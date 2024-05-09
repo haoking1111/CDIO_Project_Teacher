@@ -4,6 +4,7 @@ class Teacher {
   String? phoneNumber;
   String? email;
   String? address;
+  int? classroomIds;
 
 
   Teacher({
@@ -12,6 +13,7 @@ class Teacher {
      this.phoneNumber,
      this.email,
      this.address,
+    this.classroomIds
   });
 
   factory Teacher.fromJson(Map<String, dynamic> json) {
@@ -20,7 +22,8 @@ class Teacher {
       fullName: json['fullName'],
       phoneNumber: json['phoneNumber'],
       email: json['email'],
-      address: json['address']
+      address: json['address'],
+      classroomIds: json['classroomIds'] is String ? int.parse(json['classroomIds']) : json['classroomIds'],
     );
   }
 }

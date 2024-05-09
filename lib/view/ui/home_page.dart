@@ -1,4 +1,6 @@
 
+import 'package:cdio_project/controller/class_controller.dart';
+import 'package:cdio_project/model/class/class_model.dart';
 import 'package:cdio_project/view/ui/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,19 +18,21 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final teacherController = Get.put<TeacherController>(TeacherController());
+    final classController = Get.put<ClassController>(ClassController());
 
     return Scaffold(
         drawer: Drawer(
           backgroundColor: Colors.teal,
         ),
         body: Obx(() {
-          if(teacherController.isLoading.value) {
+          if(teacherController.isLoading.value || classController.isLoading.value) {
             return Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            if(teacherController.teacher.value!=null ) {
-              Teacher parent = teacherController.teacher.value!;
+            if(teacherController.teacher.value!=null || classController.isLoading.value != null) {
+              Teacher teacher = teacherController.teacher.value!;
+              Class classInf = classController.classInf.value!;
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 50.0),
@@ -254,7 +258,7 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                Get.to(()=> MedicinePage());
+                                                // Get.to(()=> MedicinePage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],
@@ -302,7 +306,7 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                Get.to(()=> CommentsTeacherPage());
+                                                // Get.to(()=> CommentsTeacherPage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],
@@ -381,7 +385,7 @@ class HomePage extends StatelessWidget {
                                               style: TextStyle(fontSize: 16),
                                             ),
                                             Text (
-                                              '${parent.fullName}',
+                                              '${teacher.fullName}',
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold),
@@ -401,7 +405,7 @@ class HomePage extends StatelessWidget {
                                               style: TextStyle(fontSize: 16),
                                             ),
                                             Text(
-                                              'Chồi Non',
+                                              '${classInf.name}',
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold),

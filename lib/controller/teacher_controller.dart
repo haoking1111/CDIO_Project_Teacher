@@ -13,16 +13,16 @@ class TeacherController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    fetchParent();
+    fetchTeacher();
   }
 
-  fetchParent() async {
+  fetchTeacher() async {
     try {
       var headers = {
         'Authorization': 'Bearer ${await AuthController.readToken()}'
       };
       var request = http.Request(
-          'GET', Uri.parse('${ApiUrl.getParentUrl}/${await AuthController.readUserId()}'));
+          'GET', Uri.parse(ApiUrl.getTeacherUrl));
 
       request.headers.addAll(headers);
 
@@ -47,6 +47,7 @@ class TeacherController extends GetxController{
         print(teacher.value.fullName);
         print(teacher.value.phoneNumber);
         print(teacher.value.email);
+        print(teacher.value.classroomIds);
 
 
       } else {

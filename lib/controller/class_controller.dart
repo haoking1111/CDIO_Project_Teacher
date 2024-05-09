@@ -1,7 +1,9 @@
 
 import 'dart:convert';
 import 'package:cdio_project/controller/auth_controller.dart';
+import 'package:cdio_project/controller/teacher_controller.dart';
 import 'package:cdio_project/model/class/class_model.dart';
+import 'package:cdio_project/model/teacher/teacher_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +16,7 @@ class ClassController extends GetxController{
   var classInf = Class().obs;
   var isLoading = true.obs;
 
-  final ChildController childController = Get.find<ChildController>();
+  final TeacherController teacherController = Get.find<TeacherController>();
 
   @override
   void onInit() {
@@ -23,16 +25,16 @@ class ClassController extends GetxController{
   }
 
   fetchClass() async {
-    // Đợi cho hoạt động lấy thông tin trẻ em hoàn thành trước
-    await childController.fetchChild();
+    // Đợi cho hoạt động lấy thông tin co giao hoàn thành trước
+    await teacherController.fetchTeacher();
 
-    Child child = childController.child.value;
+    Teacher teacher = teacherController.teacher.value;
     try {
       var headers = {
         'Authorization': 'Bearer ${await AuthController.readToken()}'
       };
       var request = http.Request(
-          'GET', Uri.parse('${ApiUrl.getClassById}/${child.classroomId}'));
+          'GET', Uri.parse('${ApiUrl.getClassByIdUrl}/${teacher.classroomIds}'));
 
       request.headers.addAll(headers);
 

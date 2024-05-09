@@ -21,19 +21,17 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controllerParent = Get.put<TeacherController>(TeacherController());
-    final controllerChild = Get.put<ChildController>(ChildController());
     final controllerClass = Get.put<ClassController>(ClassController());
     final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     return Scaffold(
       body: Obx(() {
-        if(controllerParent.isLoading.value && controllerChild.isLoading.value) {
+        if(controllerParent.isLoading.value && controllerClass.isLoading.value) {
           return Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          if(controllerParent.teacher.value != null && controllerChild.isLoading.value != null) {
+          if(controllerParent.teacher.value != null && controllerClass.isLoading.value != null) {
             Teacher parent = controllerParent.teacher.value!;
-            Child child = controllerChild.child.value!;
             Class classInf = controllerClass.classInf.value!;
             return SingleChildScrollView(
               child: Column(
