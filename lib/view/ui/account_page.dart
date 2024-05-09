@@ -1,7 +1,6 @@
 
 
 import 'package:cdio_project/controller/class_controller.dart';
-import 'package:cdio_project/model/parent/parent_model.dart';
 import 'package:cdio_project/view/ui/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,9 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 //
 import '../../controller/auth_controller.dart';
 import '../../controller/child_controller.dart';
-import '../../controller/parent_controller.dart';
+import '../../controller/teacher_controller.dart';
 import '../../model/child/child_model.dart';
 import '../../model/class/class_model.dart';
+import '../../model/teacher/teacher_model.dart';
 import 'login_parent_page.dart';
 
 
@@ -20,7 +20,7 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controllerParent = Get.put<ParentController>(ParentController());
+    final controllerParent = Get.put<TeacherController>(TeacherController());
     final controllerChild = Get.put<ChildController>(ChildController());
     final controllerClass = Get.put<ClassController>(ClassController());
     final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -31,8 +31,8 @@ class AccountPage extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else {
-          if(controllerParent.parent.value != null && controllerChild.isLoading.value != null) {
-            Parent parent = controllerParent.parent.value!;
+          if(controllerParent.teacher.value != null && controllerChild.isLoading.value != null) {
+            Teacher parent = controllerParent.teacher.value!;
             Child child = controllerChild.child.value!;
             Class classInf = controllerClass.classInf.value!;
             return SingleChildScrollView(
@@ -45,11 +45,10 @@ class AccountPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         color: Colors.teal,
                       ),
-
                       Container(
                         margin: const EdgeInsets.only(top: 180),
                         width: MediaQuery.of(context).size.width,
-                        height: 600,
+                        height: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(

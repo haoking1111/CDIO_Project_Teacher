@@ -84,7 +84,7 @@ class _LoginParentPageState extends State<LoginParentPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Chào Giáo Viên !',
+                                'Chào Cô Giáo !',
                                 style: TextStyle(
                                     fontSize: 30,
                                     color: Colors.lightBlue[300],
@@ -92,7 +92,7 @@ class _LoginParentPageState extends State<LoginParentPage> {
                               ),
 
                               const SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
 
                               //textfield tài khoản

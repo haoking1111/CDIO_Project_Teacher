@@ -1,4 +1,4 @@
-class Parent {
+class Teacher {
   int? id;
   String? fullName;
   String? phoneNumber;
@@ -6,7 +6,7 @@ class Parent {
   String? address;
 
 
-  Parent({
+  Teacher({
      this.id,
      this.fullName,
      this.phoneNumber,
@@ -14,8 +14,8 @@ class Parent {
      this.address,
   });
 
-  factory Parent.fromJson(Map<String, dynamic> json) {
-    return Parent(
+  factory Teacher.fromJson(Map<String, dynamic> json) {
+    return Teacher(
       id: json['id'] is String ? int.parse(json['id']) : json['id'],
       fullName: json['fullName'],
       phoneNumber: json['phoneNumber'],

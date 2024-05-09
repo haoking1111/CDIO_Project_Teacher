@@ -1,13 +1,10 @@
-import 'package:cdio_project/controller/child_controller.dart';
-import 'package:cdio_project/controller/class_controller.dart';
-import 'package:cdio_project/model/parent/parent_model.dart';
+
 import 'package:cdio_project/view/ui/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/parent_controller.dart';
-import '../../model/child/child_model.dart';
-import '../../model/class/class_model.dart';
+import '../../controller/teacher_controller.dart';
+import '../../model/teacher/teacher_model.dart';
 import 'album_page.dart';
 import 'comments_teacher_page.dart';
 import 'medicine_page.dart';
@@ -18,20 +15,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controllerParent = Get.put<ParentController>(ParentController());
+    final teacherController = Get.put<TeacherController>(TeacherController());
 
     return Scaffold(
         drawer: Drawer(
           backgroundColor: Colors.teal,
         ),
         body: Obx(() {
-          if(controllerParent.isLoading.value) {
+          if(teacherController.isLoading.value) {
             return Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            if(controllerParent.parent.value!=null ) {
-              Parent parent = controllerParent.parent.value!;
+            if(teacherController.teacher.value!=null ) {
+              Teacher parent = teacherController.teacher.value!;
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 50.0),
@@ -305,7 +302,7 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                Get.to(()=>const CommentsTeacherPage());
+                                                Get.to(()=> CommentsTeacherPage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],
@@ -405,26 +402,6 @@ class HomePage extends StatelessWidget {
                                             ),
                                             Text(
                                               'Chồi Non',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          ],
-                                        ),
-
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-
-// Age
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Số Điện Thoại: ',
-                                              style: TextStyle(fontSize: 16),
-                                            ),
-                                            Text(
-                                              '${parent.phoneNumber}',
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold),

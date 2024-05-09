@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/parent/parent_model.dart';
 import '../model/user/user_model.dart';
 
 class AuthController extends GetxController {
