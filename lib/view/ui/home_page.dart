@@ -1,6 +1,9 @@
 
+import 'dart:async';
+
 import 'package:cdio_project/controller/class_controller.dart';
 import 'package:cdio_project/model/class/class_model.dart';
+import 'package:cdio_project/view/ui/list_child_in_classroom_page.dart';
 import 'package:cdio_project/view/ui/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,13 +15,40 @@ import 'comments_teacher_page.dart';
 import 'medicine_page.dart';
 import 'message_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  final teacherController = Get.put<TeacherController>(TeacherController());
+  final classController = Get.put<ClassController>(ClassController());
+
+
+  late Timer _timer; // Khai báo timer ở đây
+
+  @override
+  void initState() {
+    super.initState();
+    // Khởi tạo timer trong phương thức initState
+    _timer = Timer.periodic(const Duration(seconds: 2), (_) {
+      teacherController.fetchTeacher();
+      classController.fetchClass();
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // Hủy bỏ timer trong phương thức dispose
+    _timer.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final teacherController = Get.put<TeacherController>(TeacherController());
-    final classController = Get.put<ClassController>(ClassController());
 
     return Scaffold(
         drawer: Drawer(
@@ -258,7 +288,7 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                // Get.to(()=> MedicinePage());
+                                                Get.to(()=> ListChildInClassRoom());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],
@@ -994,8 +1024,9 @@ class HomePage extends StatelessWidget {
             }
           }
         },)
-    );;
+    );
   }
 }
+
 
 

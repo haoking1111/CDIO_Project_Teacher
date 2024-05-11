@@ -7,7 +7,7 @@
 // import '../common/api_url.dart';
 // import '../model/child/child_model.dart';
 //
-// class TeacherController extends GetxController{
+// class ChildController extends GetxController{
 //   var child = Child().obs;
 //   var isLoading = true.obs;
 //
@@ -40,19 +40,15 @@
 //         Map<String, dynamic> jsonData = jsonDecode(data);
 //         final childData = Child.fromJson(jsonData);
 //
-//         // Lưu dữ liệu vào biến parent
 //         child.value = childData;
 //
 //         isLoading.value = false;
-//
-//         // await saveChildId(childData.classroomId.toString());
-//         // print('classId: ${await readChildId()}');
 //
 //         update();
 //
 //         print(child.value.fullName);
 //         print(child.value.age);
-//         print(child.value.hobby);
+//         print('teacherId: ${child.value.teacherId}');
 //         print('classid: ${child.value.classroomId.toString()}');
 //
 //
@@ -68,16 +64,4 @@
 //     }
 //   }
 //
-//   // Phương thức để lưu childId vào SharedPreferences
-//   // static Future<void> saveChildId(String? child) async {
-//   //   if (child != null) {
-//   //     final prefs = await _preferences;
-//   //     prefs.setString('childId', child);
-//   //   }
-//   // }
-//   //
-//   // // Phương thức để đọc childId từ SharedPreferences
-//   // static Future<String?> readChildId() async {
-//   //   return await _preferences.then((prefs) => prefs.getString('childId'));
-//   // }
 // }

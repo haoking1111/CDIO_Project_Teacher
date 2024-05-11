@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../common/api_url.dart';
-import '../model/child/child_model.dart';
-import 'child_controller.dart';
+import '../model/child/list_child_class_model.dart';
+import 'list_child_class_controller.dart';
 
 class ClassController extends GetxController{
 

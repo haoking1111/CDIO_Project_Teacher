@@ -4,6 +4,7 @@ import 'package:cdio_project/controller/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../common/api_url.dart';
+import '../common/toast.dart';
 import '../model/teacher/teacher_model.dart';
 
 class TeacherController extends GetxController{
@@ -59,6 +60,41 @@ class TeacherController extends GetxController{
     } catch (e) {
       print('error: ' + e.toString());
        // or throw an exception
+    }
+  }
+
+  updateParent(String fullNameController, String phoneNumberController, String emailController,
+      String addressController) async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${await AuthController.readToken()}'
+    };
+    var request = http.Request(
+        'PUT',
+        Uri.parse(
+            '${ApiUrl.updateTeacherInfUrl}/${await AuthController.readUserId()}'));
+
+    request.body = json.encode({
+      "fullName": fullNameController,
+      "phoneNumber": phoneNumberController,
+      "email": addressController,
+      "address": emailController
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+
+    if (response.statusCode == 200) {
+      Future.delayed(Duration(seconds: 1),() {
+        // Call Getx to update the parent data and reload the page
+        Get.find<TeacherController>().fetchTeacher();
+        Get.back();
+        showToast(message: 'Cập nhật thông tin thành công');
+      },
+      );
+    } else {
+      print(response.reasonPhrase);
     }
   }
 }
