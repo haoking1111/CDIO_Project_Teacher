@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:cdio_project/controller/child_controller.dart';
-import 'package:cdio_project/controller/list_child_class_controller.dart';
 import 'package:cdio_project/model/child/child_model.dart';
-import 'package:cdio_project/model/child/list_child_class_model.dart';
 import 'package:cdio_project/model/medicine/medicine_reminder_model.dart';
 import 'package:get/get.dart';
 import '../common/api_url.dart';
@@ -17,15 +15,14 @@ class MedicineReminderController extends GetxController {
   var medicineReminder = Rx<List<MedicineReminder>>([]);
   var isLoading = true.obs;
 
-  final ListChildClassController listChildController = Get.find<ListChildClassController>();
+  fetchMedicineReminder(String childId) async {
 
-  fetchMedicineReminder(int childId) async {
     try {
       var headers = {
         'Authorization': 'Bearer ${await AuthController.readToken()}'
       };
       var request = http.Request(
-          'GET', Uri.parse('${ApiUrl.getMedicineReminder}/$childId'));
+          'GET', Uri.parse('${ApiUrl.getMedicineReminder}/${childId}'));
 
       request.headers.addAll(headers);
 
@@ -59,21 +56,25 @@ class MedicineReminderController extends GetxController {
           print(medicineReminder.value[1].createdDay);
           print(medicineReminder.value[1].createdMonth);
           print(medicineReminder.value[1].createdYear);
+
         }
 
+
         isLoading.value = false;
+
         update();
+
+
       } else {
         await Get.snackbar(
-          'Error loading data',
-          'Server responded: ${response.statusCode}:${response.reasonPhrase.toString()}',
+            'Error loading data',
+            'Sever responded: ${response.statusCode}:${response.reasonPhrase.toString()}'
         );
       }
     } catch (e) {
-      print('error: $e');
+      print('error: ' + e.toString());
       // or throw an exception
     }
   }
-
 
 }

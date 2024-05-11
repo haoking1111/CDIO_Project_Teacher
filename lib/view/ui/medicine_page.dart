@@ -1,44 +1,47 @@
+import 'dart:async';
 
-import 'package:cdio_project/controller/list_child_class_controller.dart';
+import 'package:cdio_project/controller/medicine_reminder_controller.dart';
+import 'package:cdio_project/model/medicine/medicine_reminder_model.dart';
+import 'package:cdio_project/view/ui/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/medicine_reminder_controller.dart';
+import '../../controller/child_controller.dart';
+import '../../model/child/child_model.dart';
 import '../../model/child/list_child_class_model.dart';
 
-
 class MedicinePage extends StatefulWidget {
-  final int? childId; // Nhận childId từ ListChildInClassRoom
-   MedicinePage({Key? key, required this.childId}) : super(key: key);
+  final ListChild child;
+  MedicinePage({super.key, required this.child});
 
   @override
   State<MedicinePage> createState() => _MedicinePageState();
 }
 
 class _MedicinePageState extends State<MedicinePage> {
-  final MedicineReminderController controllerMedicineReminder = Get.find();
-  final ListChildClassController controllerChild = Get.find();
+  final controllerMedicineReminder = Get.put(MedicineReminderController());
+
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    // Fetch dữ liệu nhắc thuốc khi trang được tạo
-    if (widget.childId != null) {
-      controllerMedicineReminder.fetchMedicineReminder(widget.childId!);
-    } else {
-      // Handle the case where childId is null
-      // For example, you can show an error message or navigate back
-      Get.snackbar('Error', 'Child ID is null');
-      // Or navigate back
-      Get.back();
-    }
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      // Gọi lại phương thức lấy dữ liệu từ MedicineReminderController
+      controllerMedicineReminder.fetchMedicineReminder(widget.child.id.toString());
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel(); // Hủy bỏ timer trong phương thức dispose để tránh rò rỉ bộ nhớ
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() {
-        List<ListChild> children = controllerChild.listChil.value;
         return SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -151,7 +154,7 @@ class _MedicinePageState extends State<MedicinePage> {
                                   Icon(Icons.emoji_people, color: Colors.teal[400], size: 30,),
 
                                   Text(
-                                    '${children[3]} cm',
+                                    '${widget.child.height} cm',
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600
@@ -173,7 +176,7 @@ class _MedicinePageState extends State<MedicinePage> {
                                   Icon(Icons.scale, color: Colors.teal[400], size: 30,),
 
                                   Text(
-                                    ' kg',
+                                    '${widget.child.weight} kg',
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600
@@ -247,7 +250,7 @@ class _MedicinePageState extends State<MedicinePage> {
                             itemBuilder: (context, index) {
                               final medicineReminderItem = controllerMedicineReminder.medicineReminder.value[index];
                               return Padding(
-                                padding:  EdgeInsets.only(top: 10),
+                                padding:  EdgeInsets.only(top: 10, bottom: 15),
                                 child: Container(
                                   height: 150,
                                   width: MediaQuery.of(context).size.width,
@@ -318,17 +321,6 @@ class _MedicinePageState extends State<MedicinePage> {
                                                   fontWeight: FontWeight.w500
                                               ),
                                             ),
-
-                                            Expanded(child: Container()),
-
-                                            Text(
-                                              'Cập Nhật',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.cyan[700],
-                                                  fontWeight: FontWeight.bold
-                                              ),
-                                            )
                                           ],
                                         ),
                                       ],
