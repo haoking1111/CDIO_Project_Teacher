@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const apiUrl ='http://192.168.1.10:8080';
+  static const apiUrl ='http://192.168.50.210:8080';
   static const authUrl = '$apiUrl/api/auth/login';
   static const getParentUrl = '$apiUrl/api/user';
   static const getChildUrl = '$apiUrl/api/children/parent';
@@ -8,4 +8,5 @@ class ApiUrl {
   static const updateTeacherInfUrl = '$apiUrl/api/user';
   static const getChildInClassUrl = '$apiUrl/api/children/classroom';
   static const getMedicineReminder = '$apiUrl/api/medicine-reminder/children';
+  static const getNotificationUrl = '$apiUrl/api/notification';
 }

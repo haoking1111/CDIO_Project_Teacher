@@ -8,12 +8,16 @@ import 'package:cdio_project/view/ui/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/notification_controller.dart';
 import '../../controller/teacher_controller.dart';
 import '../../model/teacher/teacher_model.dart';
+import 'account_page.dart';
 import 'album_page.dart';
 import 'comments_teacher_page.dart';
+import 'contact_page.dart';
 import 'medicine_page.dart';
 import 'message_page.dart';
+import 'notification_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,6 +30,8 @@ class _HomePageState extends State<HomePage> {
 
   final teacherController = Get.put<TeacherController>(TeacherController());
   final classController = Get.put<ClassController>(ClassController());
+  final notificationController = Get.put<NotificationController>(NotificationController());
+
 
 
   late Timer _timer; // Khai báo timer ở đây
@@ -34,9 +40,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     // Khởi tạo timer trong phương thức initState
-    _timer = Timer.periodic(const Duration(seconds: 200), (_) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (_) {
       teacherController.fetchTeacher();
       classController.fetchClass();
+      notificationController.fetchNotification();
     });
   }
 
@@ -49,10 +56,196 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    Teacher teacher = teacherController.teacher.value;
     return Scaffold(
         drawer: Drawer(
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.white10,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.person_pin, color: Colors.white, size: 25,),
+                      SizedBox(width: 10,),
+                      Text(
+                        'Cô: ${teacher.fullName}',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                        ),
+                      )
+                    ],
+                  ),
+
+                  SizedBox(height: 20,),
+
+                  Divider(color: Colors.white,),
+
+                  SizedBox(height: 20,),
+
+                  GestureDetector(
+                    onTap:() {
+                      Get.back();
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.home, color: Colors.white, size: 30,),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Trang Chủ',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 10,),
+
+                  Divider(color: Colors.white,),
+
+                  SizedBox(height: 10,),
+
+                  GestureDetector(
+                    onTap:() {
+                      Get.back();
+                      Get.to(()=>ContactPage());
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.headset_mic, color: Colors.white, size: 30,),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Liên Hệ',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 10,),
+
+                  Divider(color: Colors.white,),
+
+                  SizedBox(height: 10,),
+
+                  GestureDetector(
+                    onTap:() {
+                      Get.back();
+                      Get.to(()=>AccountPage());
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.person, color: Colors.white, size: 30,),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Tài Khoản',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 10,),
+
+                  Divider(color: Colors.white,),
+
+                  SizedBox(height: 10,),
+
+                  GestureDetector(
+                    onTap:() {
+                      Get.back();
+                      Get.to(()=>PostPage());
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.featured_play_list_rounded, color: Colors.white, size: 30,),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Bài Viết',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 10,),
+
+                  Divider(color: Colors.white,),
+
+                  SizedBox(height: 10,),
+
+
+                  GestureDetector(
+                    onTap:() {
+                      Get.back();
+                      Get.to(()=>AlbumPage());
+                      print('tap');
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.image, color: Colors.white, size: 30,),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Ảnh',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 10,),
+
+                  Divider(color: Colors.white,),
+
+                  SizedBox(height: 10,),
+
+                  GestureDetector(
+                    onTap:() {
+                      Get.back();
+                      Get.to(()=>MessagePage());
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.mark_unread_chat_alt_sharp, color: Colors.white, size: 30,),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Nhắn Tin',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
         body: Obx(() {
           if(teacherController.isLoading.value || classController.isLoading.value) {
@@ -69,7 +262,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(children: [
 // header
                     Container(
-                      padding: const EdgeInsets.only(bottom: 20),
+                      padding: const EdgeInsets.only(bottom: 40),
                       width: MediaQuery.of(context).size.width,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -97,32 +290,49 @@ class _HomePageState extends State<HomePage> {
                                       icon: const Icon(
                                         Icons.menu_outlined,
                                         color: Colors.white,
-                                        size: 25,
+                                        size: 30,
                                       )
                                   ),
                                 ),
 
                                 Expanded(child: Container()),
 
-//Icon find
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.search_outlined,
-                                      color: Colors.white,
-                                      size: 25,
-                                    )),
-
 //Icon notifi
-                                IconButton(
-                                    onPressed: () {
-
-                                    },
-                                    icon: const Icon(
-                                      Icons.notifications_active_outlined,
-                                      color: Colors.white,
-                                      size: 25,
-                                    )),
+                                Stack(
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        Get.to(()=>NotificationPage());
+                                      },
+                                      icon: const Icon(
+                                        Icons.notifications_active_outlined,
+                                        color: Colors.white,
+                                        size: 30,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 5,
+                                      right: 5, // Điều chỉnh vị trí container màu đỏ sang phải
+                                      child: Container(
+                                        width: 17,
+                                        height: 17,
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius: BorderRadius.circular(50),
+                                        ),
+                                        child: Text(
+                                          '${notificationController.notification.value.length}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           ),
@@ -394,7 +604,7 @@ class _HomePageState extends State<HomePage> {
                                               borderRadius: BorderRadius.circular(50),
                                               image: const DecorationImage(
                                                   image: AssetImage(
-                                                      'assets/images/imageinfor.png'),
+                                                      'assets/images/teacher.png'),
                                                   fit: BoxFit.cover)),
                                         ),
                                       ],

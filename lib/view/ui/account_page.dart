@@ -113,7 +113,7 @@ class _AccountPageState extends State<AccountPage> {
                                     ],
                                     image: const DecorationImage(
                                         image: AssetImage(
-                                          'assets/images/imageinfor.png',
+                                          'assets/images/teacher.png',
                                         ),
                                         fit: BoxFit.cover)),
                               ),

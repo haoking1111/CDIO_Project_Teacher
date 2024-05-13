@@ -26,7 +26,7 @@ class _MedicinePageState extends State<MedicinePage> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
       // Gọi lại phương thức lấy dữ liệu từ MedicineReminderController
       controllerMedicineReminder.fetchMedicineReminder(widget.child.id.toString());
     });
