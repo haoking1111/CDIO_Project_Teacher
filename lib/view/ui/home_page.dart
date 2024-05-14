@@ -58,195 +58,205 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Teacher teacher = teacherController.teacher.value;
     return Scaffold(
-        drawer: Drawer(
-          backgroundColor: Colors.white10,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.person_pin, color: Colors.white, size: 25,),
-                      SizedBox(width: 10,),
-                      Text(
-                        'Cô: ${teacher.fullName}',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
+        drawer: Obx(() {
+          if(teacherController.isLoading.value) {
+            return Center(child: CircularProgressIndicator(),);
+          } else {
+            if(teacherController.teacher.value!=null) {
+              return Drawer(
+                backgroundColor: Colors.white10,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.person_pin, color: Colors.white, size: 25,),
+                            SizedBox(width: 10,),
+                            Text(
+                              'Cô: ${teacher.fullName}',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
 
-                  SizedBox(height: 20,),
+                        SizedBox(height: 20,),
 
-                  Divider(color: Colors.white,),
+                        Divider(color: Colors.white,),
 
-                  SizedBox(height: 20,),
+                        SizedBox(height: 20,),
 
-                  GestureDetector(
-                    onTap:() {
-                      Get.back();
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.home, color: Colors.white, size: 30,),
-                        SizedBox(width: 10,),
-                        Text(
-                          'Trang Chủ',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
+                        GestureDetector(
+                          onTap:() {
+                            Get.back();
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.home, color: Colors.white, size: 30,),
+                              SizedBox(width: 10,),
+                              Text(
+                                'Trang Chủ',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
                           ),
-                        )
+                        ),
+
+                        SizedBox(height: 10,),
+
+                        Divider(color: Colors.white,),
+
+                        SizedBox(height: 10,),
+
+                        GestureDetector(
+                          onTap:() {
+                            Get.back();
+                            Get.to(()=>ContactPage());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.headset_mic, color: Colors.white, size: 30,),
+                              SizedBox(width: 10,),
+                              Text(
+                                'Liên Hệ',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 10,),
+
+                        Divider(color: Colors.white,),
+
+                        SizedBox(height: 10,),
+
+                        GestureDetector(
+                          onTap:() {
+                            Get.back();
+                            Get.to(()=>AccountPage());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.person, color: Colors.white, size: 30,),
+                              SizedBox(width: 10,),
+                              Text(
+                                'Tài Khoản',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 10,),
+
+                        Divider(color: Colors.white,),
+
+                        SizedBox(height: 10,),
+
+                        GestureDetector(
+                          onTap:() {
+                            Get.back();
+                            Get.to(()=>PostPage());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.featured_play_list_rounded, color: Colors.white, size: 30,),
+                              SizedBox(width: 10,),
+                              Text(
+                                'Bài Viết',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 10,),
+
+                        Divider(color: Colors.white,),
+
+                        SizedBox(height: 10,),
+
+
+                        GestureDetector(
+                          onTap:() {
+                            Get.back();
+                            Get.to(()=>AlbumPage());
+                            print('tap');
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.image, color: Colors.white, size: 30,),
+                              SizedBox(width: 10,),
+                              Text(
+                                'Ảnh',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 10,),
+
+                        Divider(color: Colors.white,),
+
+                        SizedBox(height: 10,),
+
+                        GestureDetector(
+                          onTap:() {
+                            Get.back();
+                            Get.to(()=>ListChildInClassRoomPage());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.mark_unread_chat_alt_sharp, color: Colors.white, size: 30,),
+                              SizedBox(width: 10,),
+                              Text(
+                                'Nhắn Tin',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
-
-                  SizedBox(height: 10,),
-
-                  Divider(color: Colors.white,),
-
-                  SizedBox(height: 10,),
-
-                  GestureDetector(
-                    onTap:() {
-                      Get.back();
-                      Get.to(()=>ContactPage());
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.headset_mic, color: Colors.white, size: 30,),
-                        SizedBox(width: 10,),
-                        Text(
-                          'Liên Hệ',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(height: 10,),
-
-                  Divider(color: Colors.white,),
-
-                  SizedBox(height: 10,),
-
-                  GestureDetector(
-                    onTap:() {
-                      Get.back();
-                      Get.to(()=>AccountPage());
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.person, color: Colors.white, size: 30,),
-                        SizedBox(width: 10,),
-                        Text(
-                          'Tài Khoản',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(height: 10,),
-
-                  Divider(color: Colors.white,),
-
-                  SizedBox(height: 10,),
-
-                  GestureDetector(
-                    onTap:() {
-                      Get.back();
-                      Get.to(()=>PostPage());
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.featured_play_list_rounded, color: Colors.white, size: 30,),
-                        SizedBox(width: 10,),
-                        Text(
-                          'Bài Viết',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(height: 10,),
-
-                  Divider(color: Colors.white,),
-
-                  SizedBox(height: 10,),
-
-
-                  GestureDetector(
-                    onTap:() {
-                      Get.back();
-                      Get.to(()=>AlbumPage());
-                      print('tap');
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.image, color: Colors.white, size: 30,),
-                        SizedBox(width: 10,),
-                        Text(
-                          'Ảnh',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(height: 10,),
-
-                  Divider(color: Colors.white,),
-
-                  SizedBox(height: 10,),
-
-                  GestureDetector(
-                    onTap:() {
-                      Get.back();
-                      Get.to(()=>MessagePage());
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.mark_unread_chat_alt_sharp, color: Colors.white, size: 30,),
-                        SizedBox(width: 10,),
-                        Text(
-                          'Nhắn Tin',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+                ),
+              );
+            } else {
+              return Center(child: Text('Khong co du lieu'),);
+            }
+          }
+        },),
         body: Obx(() {
           if(teacherController.isLoading.value || classController.isLoading.value) {
             return Center(
@@ -474,7 +484,7 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                Get.to(()=> const MessagePage());
+                                                Get.to(()=> ListChildInClassRoomPage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],
@@ -498,7 +508,7 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                Get.to(()=> ListChildInClassRoom());
+                                                Get.to(()=> ListChildInClassRoomPage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],

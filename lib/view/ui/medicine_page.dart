@@ -1,13 +1,10 @@
 import 'dart:async';
 
 import 'package:cdio_project/controller/medicine_reminder_controller.dart';
-import 'package:cdio_project/model/medicine/medicine_reminder_model.dart';
-import 'package:cdio_project/view/ui/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/child_controller.dart';
-import '../../model/child/child_model.dart';
+
 import '../../model/child/list_child_class_model.dart';
 
 class MedicinePage extends StatefulWidget {

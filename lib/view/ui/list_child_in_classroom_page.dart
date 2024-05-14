@@ -1,24 +1,26 @@
 import 'dart:async';
 
 import 'package:cdio_project/controller/medicine_reminder_controller.dart';
+import 'package:cdio_project/controller/message_controller.dart';
 import 'package:cdio_project/view/ui/medicine_page.dart';
+import 'package:cdio_project/view/ui/message_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/list_child_class_controller.dart';
 import '../../model/child/list_child_class_model.dart';
 import 'package:get/get.dart';
 
-class ListChildInClassRoom extends StatefulWidget {
-  const ListChildInClassRoom({super.key});
+class ListChildInClassRoomPage extends StatefulWidget {
+  const ListChildInClassRoomPage({super.key});
 
   @override
-  State<ListChildInClassRoom> createState() => _ListChildInClassRoomState();
+  State<ListChildInClassRoomPage> createState() => _ListChildInClassRoomPageState();
 }
 
-class _ListChildInClassRoomState extends State<ListChildInClassRoom> {
+class _ListChildInClassRoomPageState extends State<ListChildInClassRoomPage> {
   final listChildController = Get.put(ListChildClassController());
   final medicineReminderController = Get.put<MedicineReminderController>(MedicineReminderController()); // Get the instance of MedicineReminderController
-
+  final messageController = Get.put<MessageController>(MessageController());
 
   late Timer _timer; // Khai báo timer ở đây
 
@@ -134,10 +136,10 @@ class _ListChildInClassRoomState extends State<ListChildInClassRoom> {
                                     ListChild child = children[index];
                                     return GestureDetector(
                                       onTap: () {
-                                        String childId = child.id.toString(); // Get the child id
-                                        medicineReminderController.fetchMedicineReminder(childId); // Call the instance method
+                                        String parentId = child.parentId.toString(); // Get the child id
+                                        messageController.fetchMessage(parentId); // Call the instance method
                                         ListChild childinf = listChildController.listChil.value[index];
-                                        Get.to(()=> MedicinePage(child: childinf));
+                                        Get.to(()=> MessagePage(child: childinf));
                                       },
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 20),
