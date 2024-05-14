@@ -129,16 +129,16 @@ class _ListChildInClassRoomMedicinePageState extends State<ListChildInClassRoomM
                                   // Add this line
                                   scrollDirection: Axis.vertical,
                                   itemCount:
-                                  listChildController.listChil.value.length,
+                                  listChildController.listChild.value.length,
                                   itemBuilder: (context, index) {
                                     List<ListChild> children =
-                                        listChildController.listChil.value;
+                                        listChildController.listChild.value;
                                     ListChild child = children[index];
                                     return GestureDetector(
                                         onTap: () {
                                           String childId = child.id.toString(); // Get the child id
                                           medicineReminderController.fetchMedicineReminder(childId); // Call the instance method
-                                          ListChild childinf = listChildController.listChil.value[index];
+                                          ListChild childinf = listChildController.listChild.value[index];
                                           Get.to(()=> MedicinePage(child: childinf));
                                         },
                                         child: Padding(

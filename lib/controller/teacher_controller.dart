@@ -34,7 +34,7 @@ class TeacherController extends GetxController{
         final data = await response.stream.bytesToString();
         // Decode JSON into a Map<String, dynamic>
         Map<String, dynamic> jsonData = jsonDecode(data);
-        final teacherData = await Teacher.fromJson(jsonData);
+        final teacherData = Teacher.fromJson(jsonData);
 
 
 
@@ -45,21 +45,16 @@ class TeacherController extends GetxController{
 
         update();
 
-        print(teacher.value.fullName);
-        print(teacher.value.phoneNumber);
-        print(teacher.value.email);
-        print(teacher.value.classroomIds);
 
 
       } else {
-        await Get.snackbar(
+         Get.snackbar(
             'Error loading data',
             'Sever responded: ${response.statusCode}:${response.reasonPhrase.toString()}'
         );
       }
     } catch (e) {
-      print('error: ' + e.toString());
-       // or throw an exception
+      showToast(message: 'Error');
     }
   }
 
@@ -86,7 +81,7 @@ class TeacherController extends GetxController{
 
 
     if (response.statusCode == 200) {
-      Future.delayed(Duration(seconds: 1),() {
+      Future.delayed(const Duration(seconds: 1),() {
         // Call Getx to update the parent data and reload the page
         Get.find<TeacherController>().fetchTeacher();
         Get.back();
@@ -94,7 +89,6 @@ class TeacherController extends GetxController{
       },
       );
     } else {
-      print(response.reasonPhrase);
     }
   }
 }

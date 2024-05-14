@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:cdio_project/common/api_url.dart';
 import 'package:cdio_project/common/toast.dart';
-import 'package:cdio_project/view/ui/account_page.dart';
 import 'package:cdio_project/view/ui/dashboard_page.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,7 +27,7 @@ class AuthController extends GetxController {
         // Đọc dữ liệu từ response
         final data = await response.stream.bytesToString();
 
-        print(data);
+        // print(data);
         // Giải mã JSON thành một đối tượng Map<String, dynamic>
         Map<String, dynamic> jsonData = jsonDecode(data);
 
@@ -37,23 +36,23 @@ class AuthController extends GetxController {
         await saveToken(userInfor.accessToken);
         await saveUserId(userInfor.userId.toString());
 
-        print(await readUserId());
-        print(await readToken());
+        // print(await readUserId());
+        // print(await readToken());
 
-        Future.delayed(Duration(seconds: 1),() {
-          Get.to(()=>DashBoardPage());
+        Future.delayed(const Duration(seconds: 1),() {
+          Get.to(()=>const DashBoardPage());
           showToast(message: 'Chúc mừng bạn đã đăng nhập thành công');
         },
         );
 
       } else {
-        print('Sai tai khoan or mat khau');
-        Future.delayed(Duration(seconds: 1),() {
-          showToast(message: 'Sai tai khoan hoac mat khau');
+        // print('Sai tai khoan or mat khau');
+        Future.delayed(const Duration(seconds: 1),() {
+          showToast(message: 'Sai tài khoản hoặc mật khẩu');
         });
       }
     } catch (e) {
-      print('error: ' + e.toString());
+      // print('error: ' + e.toString());
     }
   }
 

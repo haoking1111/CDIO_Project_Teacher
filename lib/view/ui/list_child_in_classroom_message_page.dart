@@ -129,16 +129,16 @@ class _ListChildInClassRoomMessagePageState extends State<ListChildInClassRoomMe
           // Add this line
                                   scrollDirection: Axis.vertical,
                                   itemCount:
-                                      listChildController.listChil.value.length,
+                                      listChildController.listChild.value.length,
                                   itemBuilder: (context, index) {
                                     List<ListChild> children =
-                                        listChildController.listChil.value;
+                                        listChildController.listChild.value;
                                     ListChild child = children[index];
                                     return GestureDetector(
                                       onTap: () {
                                         String parentId = child.parentId.toString(); // Get the child id
                                         messageController.fetchMessage(parentId); // Call the instance method
-                                        ListChild childinf = listChildController.listChil.value[index];
+                                        ListChild childinf = listChildController.listChild.value[index];
                                         Get.to(()=> MessagePage(child: childinf));
                                       },
                                       child: Padding(

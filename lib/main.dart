@@ -23,11 +23,9 @@ class MyApp extends StatelessWidget {
         future: AuthController.readToken(),
         builder: (context, dataSnapshot) {
           if (dataSnapshot.data == null) {
-            // Người dùng chưa đăng nhập, chuyển hướng đến màn hình đăng nhập
             return LoginParentPage();
           } else {
             Get.put(AuthController());
-            // Đã có người dùng đăng nhập, chuyển hướng đến trang chính
             return DashBoardPage();
           }
         },

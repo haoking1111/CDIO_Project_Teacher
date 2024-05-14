@@ -1,12 +1,11 @@
 import 'dart:convert';
 
+import 'package:cdio_project/common/toast.dart';
 import 'package:cdio_project/model/message/message_model.dart';
 import 'package:get/get.dart';
 import '../common/api_url.dart';
 import 'auth_controller.dart';
 import 'package:http/http.dart' as http;
-
-import 'list_child_class_controller.dart';
 
 class MessageController extends GetxController {
   var messageAll = Rx<List<Message>>([]);
@@ -19,12 +18,11 @@ class MessageController extends GetxController {
         'Authorization': 'Bearer ${await AuthController.readToken()}'
       };
       var request = http.Request(
-          'GET', Uri.parse('${ApiUrl.getAllMessageUrl}/${parentId}'));
+          'GET', Uri.parse('${ApiUrl.getAllMessageUrl}/$parentId'));
 
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
-      print(response.statusCode);
 
       if (response.statusCode == 200) {
         // Parse JSON data
@@ -37,27 +35,6 @@ class MessageController extends GetxController {
           messageAll.value = [Message.fromJson(jsonData)];
         }
 
-        if (messageAll.value.isNotEmpty) {
-          // Access the first element (assuming single entry)
-          print(messageAll.value[0].id);
-          print(messageAll.value[0].content);
-          print(messageAll.value[0].createdDay);
-          print(messageAll.value[0].createdMonth);
-          print(messageAll.value[0].createdYear);
-          print(messageAll.value[0].hour);
-          print(messageAll.value[0].minute);
-          print('---------------------');
-
-          print(messageAll.value[1].id);
-          print(messageAll.value[1].content);
-          print(messageAll.value[1].createdDay);
-          print(messageAll.value[1].createdMonth);
-          print(messageAll.value[1].createdYear);
-          print(messageAll.value[1].hour);
-          print(messageAll.value[1].minute);
-
-        }
-
 
         isLoading.value = false;
 
@@ -65,14 +42,13 @@ class MessageController extends GetxController {
 
 
       } else {
-        await Get.snackbar(
+         Get.snackbar(
             'Error loading data',
             'Sever responded: ${response.statusCode}:${response.reasonPhrase.toString()}'
         );
       }
     } catch (e) {
-      print('error: ' + e.toString());
-      // or throw an exception
+      showToast(message: 'Error');
     }
   }
 
@@ -84,7 +60,7 @@ class MessageController extends GetxController {
       };
       var request = http.Request(
           'POST',
-          Uri.parse('${ApiUrl.creatMessageUrl}/${parentId}')
+          Uri.parse('${ApiUrl.creatMessageUrl}/$parentId')
       );
       request.body = json.encode({
         "content": message
@@ -94,14 +70,14 @@ class MessageController extends GetxController {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        print(await response.stream.bytesToString());
+        // print(await response.stream.bytesToString());
       }
       else {
-        print(response.reasonPhrase);
+        // print(response.reasonPhrase);
       }
 
     } catch (e) {
-
+      showToast(message: 'Error');
     }
   }
 }

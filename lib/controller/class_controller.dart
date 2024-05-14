@@ -1,15 +1,13 @@
 
 import 'dart:convert';
+import 'package:cdio_project/common/toast.dart';
 import 'package:cdio_project/controller/auth_controller.dart';
 import 'package:cdio_project/controller/teacher_controller.dart';
 import 'package:cdio_project/model/class/class_model.dart';
 import 'package:cdio_project/model/teacher/teacher_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import '../common/api_url.dart';
-import '../model/child/list_child_class_model.dart';
-import 'list_child_class_controller.dart';
 
 class ClassController extends GetxController{
 
@@ -51,7 +49,6 @@ class ClassController extends GetxController{
         classInf.value = classData;
         isLoading.value = false;
 
-        print('ClassName--------------: ${classInf.value.name}');
 
         update();
 
@@ -62,8 +59,7 @@ class ClassController extends GetxController{
         );
       }
     } catch (e) {
-      print('error: ' + e.toString());
-      // or throw an exception
+      showToast(message: 'Error');
     }
   }
 }
