@@ -12,7 +12,7 @@ import '../../model/message/message_model.dart';
 
 class MessagePage extends StatefulWidget {
   final ListChild child;
-   MessagePage({super.key, required this.child});
+  MessagePage({super.key, required this.child});
 
   @override
   State<MessagePage> createState() => _MessagePageState();
@@ -60,121 +60,114 @@ class _MessagePageState extends State<MessagePage> {
                     if (childController.isLoading.value != null) {
                       return Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 23),
-                            child: Container(
-                              decoration: BoxDecoration(color: Colors.grey[200]),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 10, right: 10, bottom: 10),
-                                child: Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_back_ios,
-                                          color: Colors.black,
-                                        )),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          height: 50,
-                                          width: 50,
+                          Container(
+                            decoration: BoxDecoration(color: Colors.grey[200]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 40, left: 10, right: 10, bottom: 10),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_back_ios,
+                                        color: Colors.black,
+                                      )),
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                            color: Colors.redAccent,
+                                            borderRadius: BorderRadius.circular(50),
+                                            image: const DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/images/imageinfor.png'),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                      Positioned(
+                                        bottom: 0,
+                                        right: 3,
+                                        child: Container(
+                                          height: 12,
+                                          width: 12,
                                           decoration: BoxDecoration(
-                                              color: Colors.redAccent,
-                                              borderRadius: BorderRadius.circular(50),
-                                              image: const DecorationImage(
-                                                  image: AssetImage(
-                                                      'assets/images/imageinfor.png'),
-                                                  fit: BoxFit.cover)),
+                                              color: Colors.green,
+                                              borderRadius: BorderRadius.circular(50)),
                                         ),
-                                        Positioned(
-                                          bottom: 0,
-                                          right: 3,
-                                          child: Container(
-                                            height: 12,
-                                            width: 12,
-                                            decoration: BoxDecoration(
-                                                color: Colors.green,
-                                                borderRadius: BorderRadius.circular(50)),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Bé ${widget.child.fullName}',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                        Text(
-                                          'Đang hoạt động',
-                                          style: TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w400),
-                                        )
-                                      ],
-                                    ),
-                                    Expanded(child: Container()),
-                                    IconButton(
-                                        onPressed: () async {
-                                          final Uri url = Uri(
-                                              scheme: 'tel',
-                                              path: '0962492787');
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Bé ${widget.child.fullName}',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Text(
+                                        'Đang hoạt động',
+                                        style: TextStyle(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w400),
+                                      )
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () async {
+                                        final Uri url = Uri(
+                                            scheme: 'tel',
+                                            path: '0962492787');
 
+                                        await launchUrl(url);
+
+                                        if (await canLaunchUrl(url)) {
                                           await launchUrl(url);
-
-                                          if (await canLaunchUrl(url)) {
-                                            await launchUrl(url);
-                                          } else {
-                                            print('can not launch');
-                                          }
-                                        },
-                                        icon: Icon(
-                                          Icons.phone_in_talk,
-                                          color: Colors.teal,
-                                          size: 25,
-                                        )),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.videocam,
-                                          color: Colors.teal,
-                                          size: 25,
-                                        )),
-                                  ],
-                                ),
+                                        } else {
+                                          print('can not launch');
+                                        }
+                                      },
+                                      icon: Icon(
+                                        Icons.phone_in_talk,
+                                        color: Colors.teal,
+                                        size: 25,
+                                      )),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.videocam,
+                                        color: Colors.teal,
+                                        size: 25,
+                                      )),
+                                ],
                               ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 500,
-                              child: SingleChildScrollView(
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: messageController.messageAll.value.length,
-                                    itemBuilder: (context, index) {
-                                      final message = messageController.messageAll.value[index];
-                                      final isSentByTeacher = message.sendUserId == teacherController.teacher.value.id;
+                            child: SingleChildScrollView(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: messageController.messageAll.value.length,
+                                itemBuilder: (context, index) {
+                                  final message = messageController.messageAll.value[index];
+                                  final isSentByTeacher = message.sendUserId == teacherController.teacher.value.id;
 
-                                      return buildMessage(
-                                        message,
-                                        isSentByTeacher,
-                                      );
-                                    },
-                                  )
+                                  return buildMessage(
+                                    message,
+                                    isSentByTeacher,
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -291,5 +284,4 @@ class _MessagePageState extends State<MessagePage> {
       ],
     );
   }
-
 }
