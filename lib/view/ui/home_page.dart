@@ -57,13 +57,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Teacher teacher = teacherController.teacher.value;
     return Scaffold(
         drawer: Obx(() {
           if(teacherController.isLoading.value) {
             return Center(child: CircularProgressIndicator(),);
           } else {
             if(teacherController.teacher.value!=null) {
+              Teacher teacher = teacherController.teacher.value;
               return Drawer(
                 backgroundColor: Colors.white10,
                 child: SingleChildScrollView(
