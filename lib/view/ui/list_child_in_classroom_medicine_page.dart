@@ -10,14 +10,14 @@ import '../../controller/list_child_class_controller.dart';
 import '../../model/child/list_child_class_model.dart';
 import 'package:get/get.dart';
 
-class ListChildInClassRoomPage extends StatefulWidget {
-  const ListChildInClassRoomPage({super.key});
+class ListChildInClassRoomMedicinePage extends StatefulWidget {
+  const ListChildInClassRoomMedicinePage({super.key});
 
   @override
-  State<ListChildInClassRoomPage> createState() => _ListChildInClassRoomPageState();
+  State<ListChildInClassRoomMedicinePage> createState() => _ListChildInClassRoomMedicinePageState();
 }
 
-class _ListChildInClassRoomPageState extends State<ListChildInClassRoomPage> {
+class _ListChildInClassRoomMedicinePageState extends State<ListChildInClassRoomMedicinePage> {
   final listChildController = Get.put(ListChildClassController());
   final medicineReminderController = Get.put<MedicineReminderController>(MedicineReminderController()); // Get the instance of MedicineReminderController
   final messageController = Get.put<MessageController>(MessageController());
@@ -44,7 +44,7 @@ class _ListChildInClassRoomPageState extends State<ListChildInClassRoomPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Obx(
-      () {
+          () {
         return SingleChildScrollView(
           child: Container(
             child: Container(
@@ -63,7 +63,7 @@ class _ListChildInClassRoomPageState extends State<ListChildInClassRoomPage> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                     child: Column(
                       children: [
                         //icon back
@@ -82,21 +82,21 @@ class _ListChildInClassRoomPageState extends State<ListChildInClassRoomPage> {
                             ),
                           ],
                         ),
-          
+
                         SizedBox(
                           height: 20,
                         ),
-          
+
                         Icon(
                           Icons.library_books_rounded,
                           size: 100,
                           color: Colors.white,
                         ),
-          
+
                         SizedBox(
                           height: 20,
                         ),
-          
+
                         Container(
                           width: 320,
                           height: 400,
@@ -126,61 +126,61 @@ class _ListChildInClassRoomPageState extends State<ListChildInClassRoomPage> {
                                 ListView.builder(
                                   padding: EdgeInsets.zero,
                                   shrinkWrap: true,
-          // Add this line
+                                  // Add this line
                                   scrollDirection: Axis.vertical,
                                   itemCount:
-                                      listChildController.listChil.value.length,
+                                  listChildController.listChil.value.length,
                                   itemBuilder: (context, index) {
                                     List<ListChild> children =
                                         listChildController.listChil.value;
                                     ListChild child = children[index];
                                     return GestureDetector(
-                                      onTap: () {
-                                        String parentId = child.parentId.toString(); // Get the child id
-                                        messageController.fetchMessage(parentId); // Call the instance method
-                                        ListChild childinf = listChildController.listChil.value[index];
-                                        Get.to(()=> MessagePage(child: childinf));
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                                        child: Column(
-                                          children: [
+                                        onTap: () {
+                                          String childId = child.id.toString(); // Get the child id
+                                          medicineReminderController.fetchMedicineReminder(childId); // Call the instance method
+                                          ListChild childinf = listChildController.listChil.value[index];
+                                          Get.to(()=> MedicinePage(child: childinf));
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                                          child: Column(
+                                            children: [
 
 
-                                            ListTile(
-                                              leading: Icon(
-                                                Icons.person_pin,
-                                                color: Colors.teal[800],
-                                                size: 35,
+                                              ListTile(
+                                                leading: Icon(
+                                                  Icons.person_pin,
+                                                  color: Colors.teal[800],
+                                                  size: 35,
+                                                ),
+                                                title: Row(
+                                                  children: [
+                                                    Text(
+                                                      'Tên: ',
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.w700),
+                                                    ),
+                                                    Text('${child.fullName}')
+                                                  ],
+                                                ),
+                                                subtitle: Row(
+                                                  children: [
+                                                    Text(
+                                                      'Tuổi: ',
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.w700),
+                                                    ),
+                                                    Text('${child.age}')
+                                                  ],
+                                                ),
                                               ),
-                                              title: Row(
-                                                children: [
-                                                  Text(
-                                                    'Tên: ',
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.w700),
-                                                  ),
-                                                  Text('${child.fullName}')
-                                                ],
-                                              ),
-                                              subtitle: Row(
-                                                children: [
-                                                  Text(
-                                                    'Tuổi: ',
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.w700),
-                                                  ),
-                                                  Text('${child.age}')
-                                                ],
-                                              ),
-                                            ),
 
-                                            const Divider(
-                                              color: Colors.grey,
-                                            ),
-                                          ],
-                                        ),
-                                      )
+                                              const Divider(
+                                                color: Colors.grey,
+                                              ),
+                                            ],
+                                          ),
+                                        )
                                     );
                                   },
                                 ),

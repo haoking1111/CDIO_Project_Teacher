@@ -3,7 +3,8 @@ import 'dart:async';
 
 import 'package:cdio_project/controller/class_controller.dart';
 import 'package:cdio_project/model/class/class_model.dart';
-import 'package:cdio_project/view/ui/list_child_in_classroom_page.dart';
+import 'package:cdio_project/view/ui/list_child_in_classroom_medicine_page.dart';
+import 'package:cdio_project/view/ui/list_child_in_classroom_message_page.dart';
 import 'package:cdio_project/view/ui/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -230,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                         GestureDetector(
                           onTap:() {
                             Get.back();
-                            Get.to(()=>ListChildInClassRoomPage());
+                            Get.to(()=>ListChildInClassRoomMessagePage());
                           },
                           child: Row(
                             children: [
@@ -484,7 +485,7 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                Get.to(()=> ListChildInClassRoomPage());
+                                                Get.to(()=> ListChildInClassRoomMessagePage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],
@@ -508,7 +509,7 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                Get.to(()=> ListChildInClassRoomPage());
+                                                Get.to(()=> ListChildInClassRoomMedicinePage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],
