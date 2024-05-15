@@ -611,8 +611,8 @@ class _HomePageState extends State<HomePage> {
                                     Column(
                                       children: [
                                         Container(
-                                          height: 115,
-                                          width: 115,
+                                          height: 110,
+                                          width: 110,
                                           decoration: BoxDecoration(
                                               color: Colors.redAccent,
                                               borderRadius: BorderRadius.circular(50),
@@ -641,7 +641,7 @@ class _HomePageState extends State<HomePage> {
                                             Text (
                                               '${teacher.fullName}',
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 16,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           ],
@@ -661,7 +661,7 @@ class _HomePageState extends State<HomePage> {
                                             Text(
                                               '${classInf.name}',
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 16,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           ],
