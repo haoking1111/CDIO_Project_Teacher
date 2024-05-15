@@ -22,7 +22,7 @@ class PostImageController extends GetxController {
 
   Future<void> uploadImage(String childId) async {
     if (selectedImagePath.value.isEmpty) {
-      Get.snackbar('Error', 'No image selected');
+      Get.snackbar('Lỗi', 'Không có tấm ảnh nào');
       return;
     }
 

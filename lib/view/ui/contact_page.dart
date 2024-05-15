@@ -472,7 +472,7 @@ class _ContactPageState extends State<ContactPage> {
                                                     fontWeight: FontWeight.w700),
                                               ),
                                               Text(
-                                                '${teacher.address}',
+                                                '${teacher.email}',
                                                 style: TextStyle(
                                                     decoration: TextDecoration.underline,
                                                     fontSize: 14,

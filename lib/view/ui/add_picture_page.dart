@@ -1,12 +1,14 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 import '../../controller/image_controller.dart';
+import '../../controller/list_child_class_controller.dart';
+import '../../model/child/list_child_class_model.dart';
 
 class AddPicturePage extends StatefulWidget {
-  const AddPicturePage({super.key});
+  const AddPicturePage({Key? key}) : super(key: key);
 
   @override
   State<AddPicturePage> createState() => _AddPicturePageState();
@@ -14,6 +16,7 @@ class AddPicturePage extends StatefulWidget {
 
 class _AddPicturePageState extends State<AddPicturePage> {
   final PostImageController controller = Get.put(PostImageController());
+  final ListChildClassController listChildController = Get.put(ListChildClassController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class _AddPicturePageState extends State<AddPicturePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Obx(() {
               return controller.selectedImagePath.value.isEmpty
@@ -47,20 +51,19 @@ class _AddPicturePageState extends State<AddPicturePage> {
             }),
             SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal
+                    backgroundColor: Colors.teal,
                   ),
                   icon: Icon(Icons.photo, color: Colors.white,),
                   label: Text('Bộ sưu tập', style: TextStyle(color: Colors.white),),
                   onPressed: () => controller.pickImage(ImageSource.gallery),
                 ),
-                SizedBox(width: 20),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal
+                    backgroundColor: Colors.teal,
                   ),
                   icon: Icon(Icons.camera,color: Colors.white ),
                   label: Text('Chụp ảnh', style: TextStyle(color: Colors.white)),
@@ -69,21 +72,59 @@ class _AddPicturePageState extends State<AddPicturePage> {
               ],
             ),
             SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal
+            Expanded(
+              child: Obx(() {
+                if (listChildController.isLoading.value) {
+                  return Center(child: CircularProgressIndicator());
+                } else {
+                  return ListView.builder(
+                    itemCount: listChildController.listChild.value.length,
+                    itemBuilder: (context, index) {
+                      ListChild child = listChildController.listChild.value[index];
+                      return CheckboxListTile(
+                        activeColor: Colors.teal,
+                        title: Text(child.fullName ?? ''),
+                        subtitle: Text('Age: ${child.age}'),
+                        value: controller.selectedChild.value == child.id.toString(),
+                        onChanged: (bool? value) {
+                          setState(() {
+                            if (value!) {
+                              controller.selectedChild.value = child.id.toString();
+                            } else {
+                              controller.selectedChild.value = '';
+                            }
+                          });
+                        },
+                      );
+                    },
+                  );
+                }
+              }),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal,
+                    ),
+                    icon: Icon(Icons.upload, color: Colors.white),
+                    label: Text('Tải ảnh lên', style: TextStyle(color: Colors.white)),
+                    onPressed: () {
+                      // Check if any child is selected
+                      if (controller.selectedChild.value.isEmpty) {
+                        Get.snackbar('Lỗi', 'Vui lòng chọn một học sinh');
+                        return;
+                      }
+                      // Upload image with selected child ID
+                      controller.uploadImage(controller.selectedChild.value);
+                    },
                   ),
-                  icon: Icon(Icons.upload, color: Colors.white),
-                  label: Text('Tải ảnh lên', style: TextStyle(color: Colors.white)),
-                  onPressed: () => controller.uploadImage('10'),
-                ),
-              ],
-            )
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:cdio_project/model/class/class_model.dart';
 import 'package:cdio_project/view/ui/list_child_in_classroom_medicine_page.dart';
 import 'package:cdio_project/view/ui/list_child_in_classroom_message_page.dart';
 import 'package:cdio_project/view/ui/post_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -75,12 +76,14 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Icon(Icons.person_pin, color: Colors.white, size: 25,),
                             SizedBox(width: 10,),
-                            Text(
-                              'Cô: ${teacher.fullName}',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold
+                            Expanded(
+                              child: Text(
+                                'Cô: ${teacher.fullName}',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
                               ),
                             )
                           ],
@@ -633,12 +636,12 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             Text(
                                               'Cô Giáo: ',
-                                              style: TextStyle(fontSize: 16),
+                                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),
                                             ),
                                             Text (
                                               '${teacher.fullName}',
                                               style: TextStyle(
-                                                  fontSize: 16,
+                                                  fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           ],
@@ -653,12 +656,12 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             Text(
                                               'Lớp: ',
-                                              style: TextStyle(fontSize: 16),
+                                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                                             ),
                                             Text(
                                               '${classInf.name}',
                                               style: TextStyle(
-                                                  fontSize: 16,
+                                                  fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           ],
