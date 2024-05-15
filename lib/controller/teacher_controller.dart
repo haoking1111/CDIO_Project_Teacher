@@ -72,8 +72,8 @@ class TeacherController extends GetxController{
     request.body = json.encode({
       "fullName": fullNameController,
       "phoneNumber": phoneNumberController,
-      "email": addressController,
-      "address": emailController
+      "email": emailController,
+      "address": addressController,
     });
     request.headers.addAll(headers);
 
