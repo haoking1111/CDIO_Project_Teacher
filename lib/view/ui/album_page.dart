@@ -1,3 +1,4 @@
+import 'package:cdio_project/view/ui/add_picture_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -214,7 +215,7 @@ class _AlbumPageState extends State<AlbumPage> {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Center(
                         child: Text(
-                            'Hôm Nay',
+                            'Nổi Bậc',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600
@@ -424,6 +425,13 @@ class _AlbumPageState extends State<AlbumPage> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.to(()=>AddPicturePage());
+          },
+        child: Icon(Icons.add, size: 30, color: Colors.white,),
+        backgroundColor: Colors.teal,
       ),
     );
   }
