@@ -35,7 +35,7 @@ class _AddPicturePageState extends State<AddPicturePage> {
           children: [
             Obx(() {
               return controller.selectedImagePath.value.isEmpty
-                  ? Text('Bạn hãy chọn 1 tấm ảnh', style: TextStyle(fontSize: 18))
+                  ? Text('Bạn hãy chọn 1 tấm ảnh', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
                   : Expanded(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -83,8 +83,8 @@ class _AddPicturePageState extends State<AddPicturePage> {
                       ListChild child = listChildController.listChild.value[index];
                       return CheckboxListTile(
                         activeColor: Colors.teal,
-                        title: Text(child.fullName ?? ''),
-                        subtitle: Text('Age: ${child.age}'),
+                        title: Text(child.fullName ?? '', style: TextStyle(fontWeight: FontWeight.w700),),
+                        subtitle: Text('Tuổi: ${child.age}', style: TextStyle(fontWeight: FontWeight.w600),),
                         value: controller.selectedChild.value == child.id.toString(),
                         onChanged: (bool? value) {
                           setState(() {
@@ -102,7 +102,7 @@ class _AddPicturePageState extends State<AddPicturePage> {
               }),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.only(bottom: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

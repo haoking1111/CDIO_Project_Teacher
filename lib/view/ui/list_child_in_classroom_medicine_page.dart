@@ -148,18 +148,18 @@ class _ListChildInClassRoomMedicinePageState extends State<ListChildInClassRoomM
 
                                               ListTile(
                                                 leading: Icon(
-                                                  Icons.person_pin,
+                                                  Icons.child_care,
                                                   color: Colors.teal[800],
-                                                  size: 35,
+                                                  size: 40,
                                                 ),
                                                 title: Row(
                                                   children: [
                                                     Text(
                                                       'Tên: ',
                                                       style: TextStyle(
-                                                          fontWeight: FontWeight.w700),
+                                                          fontWeight: FontWeight.w800),
                                                     ),
-                                                    Text('${child.fullName}')
+                                                    Text('${child.fullName}', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),)
                                                   ],
                                                 ),
                                                 subtitle: Row(
@@ -167,15 +167,11 @@ class _ListChildInClassRoomMedicinePageState extends State<ListChildInClassRoomM
                                                     Text(
                                                       'Tuổi: ',
                                                       style: TextStyle(
-                                                          fontWeight: FontWeight.w700),
+                                                          fontWeight: FontWeight.w800,),
                                                     ),
-                                                    Text('${child.age}')
+                                                    Text('${child.age}',  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400))
                                                   ],
                                                 ),
-                                              ),
-
-                                              const Divider(
-                                                color: Colors.grey,
                                               ),
                                             ],
                                           ),
