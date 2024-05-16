@@ -140,41 +140,38 @@ class _ListChildInClassRoomMedicinePageState extends State<ListChildInClassRoomM
                                           ListChild childinf = listChildController.listChild.value[index];
                                           Get.to(()=> MedicinePage(child: childinf));
                                         },
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                                          child: Column(
-                                            children: [
+                                        child: Column(
+                                          children: [
 
 
-                                              ListTile(
-                                                leading: Icon(
-                                                  Icons.child_care,
-                                                  color: Colors.teal[800],
-                                                  size: 40,
-                                                ),
-                                                title: Row(
-                                                  children: [
-                                                    Text(
-                                                      'Tên: ',
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.w800),
-                                                    ),
-                                                    Text('${child.fullName}', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),)
-                                                  ],
-                                                ),
-                                                subtitle: Row(
-                                                  children: [
-                                                    Text(
-                                                      'Tuổi: ',
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.w800,),
-                                                    ),
-                                                    Text('${child.age}',  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400))
-                                                  ],
-                                                ),
+                                            ListTile(
+                                              leading: Icon(
+                                                Icons.child_care,
+                                                color: Colors.teal[800],
+                                                size: 40,
                                               ),
-                                            ],
-                                          ),
+                                              title: Row(
+                                                children: [
+                                                  Text(
+                                                    'Tên: ',
+                                                    style: TextStyle(
+                                                        fontWeight: FontWeight.w800),
+                                                  ),
+                                                  Text('${child.fullName}', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),)
+                                                ],
+                                              ),
+                                              subtitle: Row(
+                                                children: [
+                                                  Text(
+                                                    'Tuổi: ',
+                                                    style: TextStyle(
+                                                        fontWeight: FontWeight.w800,),
+                                                  ),
+                                                  Text('${child.age}',  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400))
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         )
                                     );
                                   },
