@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     // Khởi tạo timer trong phương thức initState
-    _timer = Timer.periodic(const Duration(seconds: 3), (_) {
+    _timer = Timer.periodic(const Duration(seconds: 10), (_) {
       teacherController.fetchTeacher();
       classController.fetchClass();
       notificationController.fetchNotification();
@@ -351,7 +351,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 112,
@@ -453,7 +453,7 @@ class _HomePageState extends State<HomePage> {
 
 // body
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
