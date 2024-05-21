@@ -131,10 +131,13 @@ class _ListChildInClassRoomMessagePageState extends State<ListChildInClassRoomMe
                                       child: Column(
                                         children: [
                                           ListTile(
-                                            leading: Icon(
-                                              Icons.child_care,
-                                              color: Colors.teal[800],
-                                              size: 40,
+                                            // leading: Icon(
+                                            //   Icons.child_care,
+                                            //   color: Colors.teal[800],
+                                            //   size: 40,
+                                            // ),
+                                            leading: CircleAvatar(
+                                              backgroundImage: AssetImage('assets/images/imageinfor.png'),
                                             ),
                                             title: Row(
                                               children: [

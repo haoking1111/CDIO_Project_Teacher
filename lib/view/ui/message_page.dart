@@ -200,30 +200,32 @@ class _MessagePageState extends State<MessagePage> {
                 Icon(Icons.mic, color: Colors.teal),
                 Container(
                   width: 200,
-                  height: 45,
+                  height: 60,
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12)),
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    controller: _messageController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                        const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(30),
+                  child: Center(
+                    child: TextField(
+                      style: TextStyle(color: Colors.white),
+                      controller: _messageController,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                          const BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                          const BorderSide(color: Colors.teal),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        hintText: 'Aa',
+                        hintStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        fillColor: Colors.teal[400],
+                        filled: true,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                        const BorderSide(color: Colors.teal),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      hintText: 'Aa',
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                      ),
-                      fillColor: Colors.teal[400],
-                      filled: true,
                     ),
                   ),
                 ),
