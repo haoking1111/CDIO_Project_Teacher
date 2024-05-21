@@ -83,10 +83,6 @@ class _NotificationPageState extends State<NotificationPage> {
                               ],
                             ),
 
-                            SizedBox(height: 10,),
-
-                            Icon(Icons.notifications_active_sharp, color: Colors.white, size: 70,),
-
                             SizedBox(height: 20,),
                             SingleChildScrollView(
                               child: Container(

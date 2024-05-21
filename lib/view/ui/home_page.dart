@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:cdio_project/controller/class_controller.dart';
 import 'package:cdio_project/model/class/class_model.dart';
+import 'package:cdio_project/view/ui/list_child_in_classroom_comment_page.dart';
 import 'package:cdio_project/view/ui/list_child_in_classroom_medicine_page.dart';
 import 'package:cdio_project/view/ui/list_child_in_classroom_message_page.dart';
 import 'package:cdio_project/view/ui/post_page.dart';
@@ -351,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 112,
@@ -371,6 +372,7 @@ class _HomePageState extends State<HomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -430,8 +432,6 @@ class _HomePageState extends State<HomePage> {
                                       ],
                                     ),
 
-                                    Expanded(child: Container()),
-
                                     IconButton(
                                         onPressed: () {
 
@@ -453,7 +453,7 @@ class _HomePageState extends State<HomePage> {
 
 // body
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
@@ -560,7 +560,7 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             RawMaterialButton(
                                               onPressed: () {
-                                                // Get.to(()=> CommentsTeacherPage());
+                                                Get.to(()=> ListChildInClassRoomCommentPage());
                                               },
                                               elevation: 2.0,
                                               fillColor: Colors.lightBlue[50],

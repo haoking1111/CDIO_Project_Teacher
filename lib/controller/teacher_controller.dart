@@ -58,7 +58,7 @@ class TeacherController extends GetxController{
     }
   }
 
-  updateParent(String fullNameController, String phoneNumberController, String emailController,
+  updateTeacher(String fullNameController, String phoneNumberController, String emailController,
       String addressController) async {
     var headers = {
       'Content-Type': 'application/json',

@@ -1,26 +1,27 @@
 import 'dart:async';
 
+import 'package:cdio_project/controller/comment_for_child_controller.dart';
 import 'package:cdio_project/controller/medicine_reminder_controller.dart';
 import 'package:cdio_project/controller/message_controller.dart';
+import 'package:cdio_project/view/ui/comment_child_page.dart';
 import 'package:cdio_project/view/ui/medicine_page.dart';
-import 'package:cdio_project/view/ui/message_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/list_child_class_controller.dart';
 import '../../model/child/list_child_class_model.dart';
 import 'package:get/get.dart';
 
-class ListChildInClassRoomMessagePage extends StatefulWidget {
-  const ListChildInClassRoomMessagePage({super.key});
+class ListChildInClassRoomCommentPage extends StatefulWidget {
+  const ListChildInClassRoomCommentPage({super.key});
 
   @override
-  State<ListChildInClassRoomMessagePage> createState() => _ListChildInClassRoomMessagePageState();
+  State<ListChildInClassRoomCommentPage> createState() => _ListChildInClassRoomCommentPageState();
 }
 
-class _ListChildInClassRoomMessagePageState extends State<ListChildInClassRoomMessagePage> {
+class _ListChildInClassRoomCommentPageState extends State<ListChildInClassRoomCommentPage> {
   final listChildController = Get.put(ListChildClassController());
   final medicineReminderController = Get.put<MedicineReminderController>(MedicineReminderController()); // Get the instance of MedicineReminderController
-  final messageController = Get.put<MessageController>(MessageController());
+  final commentController = Get.put<CommentController>(CommentController());
 
   // late Timer _timer; // Khai báo timer ở đây
   //
@@ -43,26 +44,24 @@ class _ListChildInClassRoomMessagePageState extends State<ListChildInClassRoomMe
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() {
+    return Scaffold(body: Obx(
+          () {
         return SingleChildScrollView(
           child: Container(
-            width: MediaQuery.of(context).size.width,
             child: Stack(
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 430,
                   decoration: BoxDecoration(
-                    color: Colors.teal,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(50),
-                      bottomRight: Radius.circular(50),
-                    ),
-                  ),
+                      color: Colors.teal,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(50),
+                          bottomRight: Radius.circular(50))),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   child: Column(
                     children: [
                       //icon back
@@ -81,55 +80,68 @@ class _ListChildInClassRoomMessagePageState extends State<ListChildInClassRoomMe
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
                       Icon(
                         Icons.library_books_rounded,
                         size: 100,
                         color: Colors.white,
                       ),
-                      SizedBox(height: 20),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
                       Container(
-                        width: 350,
+                        width: 320,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 6,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2))
+                            ]),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 20),
                           child: Column(
                             children: [
                               Text(
                                 'Danh sách trẻ em',
-                                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(
+                                height: 15,
+                              ),
                               ListView.builder(
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,
+                                // Add this line
                                 scrollDirection: Axis.vertical,
-                                itemCount: listChildController.listChild.value.length,
+                                itemCount:
+                                listChildController.listChild.value.length,
                                 itemBuilder: (context, index) {
-                                  List<ListChild> children = listChildController.listChild.value;
+                                  List<ListChild> children =
+                                      listChildController.listChild.value;
                                   ListChild child = children[index];
                                   return GestureDetector(
-                                    onTap: () {
-                                      String parentId = child.parentId.toString(); // Get the child id
-                                      messageController.fetchMessage(parentId); // Call the instance method
-                                      ListChild childinf = listChildController.listChild.value[index];
-                                      Get.to(() => MessagePage(child: childinf));
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                                      onTap: () {
+                                        String childId = child.id.toString(); // Get the child id
+                                        commentController.fetchCommentForChild(childId); // Call the instance method
+                                        ListChild childinf = listChildController.listChild.value[index];
+                                        Get.to(()=> CommentChildPage(child: childinf));
+                                      },
                                       child: Column(
                                         children: [
+
+
                                           ListTile(
                                             leading: Icon(
                                               Icons.child_care,
@@ -140,30 +152,25 @@ class _ListChildInClassRoomMessagePageState extends State<ListChildInClassRoomMe
                                               children: [
                                                 Text(
                                                   'Tên: ',
-                                                  style: TextStyle(fontWeight: FontWeight.w800),
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w800),
                                                 ),
-                                                Text(
-                                                  '${child.fullName}',
-                                                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
-                                                ),
+                                                Text('${child.fullName}', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),)
                                               ],
                                             ),
                                             subtitle: Row(
                                               children: [
                                                 Text(
                                                   'Tuổi: ',
-                                                  style: TextStyle(fontWeight: FontWeight.w800),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w800,),
                                                 ),
-                                                Text(
-                                                  '${child.age}',
-                                                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
-                                                ),
+                                                Text('${child.age}',  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400))
                                               ],
                                             ),
                                           ),
                                         ],
-                                      ),
-                                    ),
+                                      )
                                   );
                                 },
                               ),
@@ -178,7 +185,7 @@ class _ListChildInClassRoomMessagePageState extends State<ListChildInClassRoomMe
             ),
           ),
         );
-      }),
-    );
+      },
+    ));
   }
 }
