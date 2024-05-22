@@ -14,4 +14,6 @@ class ApiUrl {
   static const postImageUrl = '$apiUrl/api/albums';
   static const getAllCommentForChild = '$apiUrl/api/childComment/child';
   static const creatCommentForChild = '$apiUrl/api/childComment';
+  static const getAllPost = '$apiUrl/api/post';
+  static const displayAlbumByChildIdUrl = '$apiUrl/api/image';
 }
