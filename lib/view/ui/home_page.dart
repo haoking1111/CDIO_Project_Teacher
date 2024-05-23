@@ -7,7 +7,6 @@ import 'package:cdio_project/view/ui/list_child_in_classroom_comment_page.dart';
 import 'package:cdio_project/view/ui/list_child_in_classroom_medicine_page.dart';
 import 'package:cdio_project/view/ui/list_child_in_classroom_message_page.dart';
 import 'package:cdio_project/view/ui/post_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,10 +15,7 @@ import '../../controller/teacher_controller.dart';
 import '../../model/teacher/teacher_model.dart';
 import 'account_page.dart';
 import 'album_page.dart';
-import 'comments_teacher_page.dart';
 import 'contact_page.dart';
-import 'medicine_page.dart';
-import 'message_page.dart';
 import 'notification_page.dart';
 
 class HomePage extends StatefulWidget {

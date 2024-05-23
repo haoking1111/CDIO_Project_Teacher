@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:cdio_project/controller/list_child_class_controller.dart';
 import 'package:cdio_project/controller/message_controller.dart';
-import 'package:cdio_project/model/teacher/teacher_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -126,7 +125,8 @@ class _MessagePageState extends State<MessagePage> {
                                       onPressed: () async {
                                         final Uri url = Uri(
                                             scheme: 'tel',
-                                            path: '0962492787');
+                                            path: '0962492787'
+                                        );
 
                                         await launchUrl(url);
 

@@ -2,12 +2,7 @@
 import 'package:cdio_project/view/ui/post_item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
-
-import '../../common/api_url.dart';
 import '../../controller/post_controller.dart';
-import '../../model/post/post_model.dart';
-import 'detail_post_page.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({super.key});

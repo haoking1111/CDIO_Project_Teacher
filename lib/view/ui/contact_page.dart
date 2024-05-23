@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,18 +14,6 @@ class ContactPage extends StatefulWidget {
 
 class _ContactPageState extends State<ContactPage> {
   final teacherController = Get.put<TeacherController>(TeacherController());
-
-  // Future<void> _launchUrl(String url) async {
-  //   final Uri uri = Uri(scheme: 'https', host: url);
-  //
-  //   if(!await launchUrl(
-  //     uri,
-  //     mode: LaunchMode.inAppBrowserView,
-  //
-  //   )) {
-  //     throw 'Không thể mở';
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {

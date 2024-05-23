@@ -1,8 +1,6 @@
-import 'dart:async';
 
 import 'package:cdio_project/controller/medicine_reminder_controller.dart';
 import 'package:cdio_project/controller/message_controller.dart';
-import 'package:cdio_project/view/ui/medicine_page.dart';
 import 'package:cdio_project/view/ui/message_page.dart';
 import 'package:flutter/material.dart';
 

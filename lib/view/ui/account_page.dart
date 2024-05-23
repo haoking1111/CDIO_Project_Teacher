@@ -6,12 +6,7 @@ import 'package:cdio_project/view/ui/update_teacher_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-//
-import '../../controller/auth_controller.dart';
-import '../../controller/list_child_class_controller.dart';
 import '../../controller/teacher_controller.dart';
-import '../../model/child/list_child_class_model.dart';
 import '../../model/class/class_model.dart';
 import '../../model/teacher/teacher_model.dart';
 import 'login_parent_page.dart';

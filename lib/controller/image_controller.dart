@@ -1,7 +1,6 @@
 import 'package:cdio_project/common/api_url.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
 import 'auth_controller.dart';
