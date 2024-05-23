@@ -36,8 +36,6 @@ class AuthController extends GetxController {
         await saveToken(userInfor.accessToken);
         await saveUserId(userInfor.userId.toString());
 
-        // print(await readUserId());
-        // print(await readToken());
 
         Future.delayed(const Duration(seconds: 1),() {
           Get.to(()=>const DashBoardPage());
