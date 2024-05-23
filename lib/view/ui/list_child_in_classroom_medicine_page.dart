@@ -1,4 +1,4 @@
-import 'dart:async';
+
 
 import 'package:cdio_project/controller/medicine_reminder_controller.dart';
 import 'package:cdio_project/controller/message_controller.dart';
@@ -21,24 +21,24 @@ class _ListChildInClassRoomMedicinePageState extends State<ListChildInClassRoomM
   final medicineReminderController = Get.put<MedicineReminderController>(MedicineReminderController()); // Get the instance of MedicineReminderController
   final messageController = Get.put<MessageController>(MessageController());
 
-  late Timer _timer; // Khai báo timer ở đây
-
-  @override
-  void initState() {
-    super.initState();
-    // Khởi tạo timer trong phương thức initState
-    _timer = Timer.periodic(const Duration(seconds: 10), (_) {
-      listChildController.fetchChildrenByClassroom();
-
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    // Hủy bỏ timer trong phương thức dispose
-    _timer.cancel();
-  }
+  // late Timer _timer; // Khai báo timer ở đây
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // Khởi tạo timer trong phương thức initState
+  //   _timer = Timer.periodic(const Duration(seconds: 10), (_) {
+  //     listChildController.fetchChildrenByClassroom();
+  //
+  //   });
+  // }
+  //
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   // Hủy bỏ timer trong phương thức dispose
+  //   _timer.cancel();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -141,10 +141,8 @@ class _ListChildInClassRoomMedicinePageState extends State<ListChildInClassRoomM
 
 
                                           ListTile(
-                                            leading: Icon(
-                                              Icons.child_care,
-                                              color: Colors.teal[800],
-                                              size: 40,
+                                            leading: CircleAvatar(
+                                              backgroundImage: AssetImage('assets/images/imageinfor.png'),
                                             ),
                                             title: Row(
                                               children: [
