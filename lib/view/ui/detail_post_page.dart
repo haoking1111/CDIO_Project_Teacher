@@ -27,7 +27,7 @@ class DetailPostPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.ios_share),
             onPressed: () {
-              Share.share('Check out this post: ${post.title}');
+              Share.share('${post.title}');
             },
           ),
         ],

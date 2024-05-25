@@ -218,7 +218,7 @@ class _CreateCommentForChildPageState extends State<CreateCommentForChildPage> {
                                     );
                                     commentForChildCotroller.fetchCommentForChild(widget.childId);
                                     Get.back();
-                                    showToast(message: 'Thêm dặn dò thành công');
+                                    showToast(message: 'Thêm nhận xét thành công');
                                   },
                                   );
                                 },
